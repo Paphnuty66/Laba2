@@ -16,13 +16,13 @@ def tick():
 def start():
     lbl.config(text="Время пошло")
     btn.place_forget()
-    btn1.place(relx=.5, rely=.5, anchor="c")
+    btn1.place(relx=.5, rely=.7, anchor="c")
     tick()
 
 def stop():
     lbl.config(text="Хотите сбросить Секундомер?")
     btn1.place_forget()
-    btn2.place(relx=.5, rely=.5, anchor="c")
+    btn2.place(relx=.5, rely=.7, anchor="c")
     window.after_cancel(after_id)
 
 def reset():
@@ -30,7 +30,7 @@ def reset():
     global temp
     temp = 0
     btn2.place_forget()
-    btn.place(relx=.5, rely=.5, anchor="c")
+    btn.place(relx=.5, rely=.7, anchor="c")
     lbl1.config(text="00:00")
 
 def starttm():
@@ -42,7 +42,8 @@ def starttm():
     btn6.place_forget()
     btn7.place_forget()
     if hours == 0 and minut == 0:
-        lbl.config(text="Таймер завершен!")
+        lbl.config(text="Время вышло!")
+        showinfo("Время вышло!", "Таймер закончил свою работу!")
         lbl1.config(text="00:00")
         btn8.place_forget()
         timer()
@@ -66,12 +67,12 @@ def starttm():
     lbl1.config(text=h1)
     after_id = window.after(1000, starttm)
     lbl.config(text="Чтобы остановить нажмите Stop")
-    btn8.place(relx=.5, rely=.5, anchor="c")
+    btn8.place(relx=.5, rely=.8, anchor="c")
 
 def stoptm():
     lbl.config(text="Хотите сбросить таймер?")
     btn8.place_forget()
-    btn9.place(relx=.5, rely=.5, anchor="c")
+    btn9.place(relx=.5, rely=.8, anchor="c")
     window.after_cancel(after_id)
 
 def resettm():
@@ -83,16 +84,17 @@ def resettm():
     timer()
 
 def timer():
+    title_label.config(text="Таймер")
     btn.place_forget()
     btn1.place_forget()
     btn2.place_forget()
     lbl.config(text="Введите время для таймера")
     lbl1.config(text="00:00")
-    btn3.place(relx=.3, rely=.35, anchor="c")
-    btn4.place(relx=.4, rely=.35, anchor="c")
-    btn5.place(relx=.6, rely=.35, anchor="c")
-    btn6.place(relx=.7, rely=.35, anchor="c")
-    btn7.place(relx=.5, rely=.5, anchor="c")
+    btn3.place(relx=.3, rely=.6, anchor="c")
+    btn4.place(relx=.4, rely=.6, anchor="c")
+    btn5.place(relx=.6, rely=.6, anchor="c")
+    btn6.place(relx=.7, rely=.6, anchor="c")
+    btn7.place(relx=.5, rely=.8, anchor="c")
 
 def plush():
     global hours, minut
@@ -170,6 +172,7 @@ def minusm():
             lbl1.config(text=h1)
 
 def Sec():
+    title_label.config(text="Секундомер")
     global current_mode, hours, minut
     hours=0
     minut=0
@@ -184,10 +187,10 @@ def Sec():
         btn9.place_forget()
         lbl.config(text="Для начала нажми на кнопку Start")
         lbl1.config(text="00:00")
-        btn.place(relx=.5, rely=.5, anchor="c")
+        btn.place(relx=.5, rely=.8, anchor="c")
 
 def Timer():
-
+    title_label.config(text="Таймер")
     global current_mode, temp
     temp = 0
     if current_mode != "timer":
@@ -197,39 +200,46 @@ def Timer():
         btn2.place_forget()
         lbl.config(text="Введите время для таймера")
         lbl1.config(text="00:00")
-        btn3.place(relx=.3, rely=.35, anchor="c")
-        btn4.place(relx=.4, rely=.35, anchor="c")
-        btn5.place(relx=.6, rely=.35, anchor="c")
-        btn6.place(relx=.7, rely=.35, anchor="c")
-        btn7.place(relx=.5, rely=.5, anchor="c")
+        btn3.place(relx=.3, rely=.6, anchor="c")
+        btn4.place(relx=.4, rely=.6, anchor="c")
+        btn5.place(relx=.6, rely=.6, anchor="c")
+        btn6.place(relx=.7, rely=.6, anchor="c")
+        btn7.place(relx=.5, rely=.8, anchor="c")
 
 
 
 window = Tk()
-window['bg'] = '#F0FFFF'
-window.title("Секундомер")
+window['bg'] = '#2E3B4E'
+window.title("Лабораторная работа №2")
 window.geometry("400x400")
-showinfo(title="Белов Павел ИДБ-23-14", message="Вариант 13 Программа <<Таймер-секундомер>>")
-lbl = Label(window, text="Для начала нажми на кнопку Start", font=("Elephant", 16))
-lbl.pack()
-lbl1 = Label(window, text="00:00", font=("Elephant", 40))
+window.resizable(False, False)
+title_label = Label(window, text="Секундомер", font=("Arial", 24, 'bold'), bg="#2E3B4E", fg="#E1EFFF")
+title_label.pack(pady=20)
+btn_style = {"font": ("Arial", 18), "bg": "#66CDAA", "activebackground": "White", "relief": "solid", "bd": 2}
+
+# Настройка меток времени
+lbl = Label(window, text="Для начала нажми на кнопку Start", font=("Arial", 16), fg="#F4F4F4", bg="#2E3B4E")
+lbl.pack(pady=10)
+
+lbl1 = Label(window, text="00:00", font=("Elephant", 50), fg="#F4F4F4", bg="#2E3B4E")
 lbl1.pack()
-btn = Button(window, text="Start!", font=("Elephant", 20), background="#66CDAA", command=start, activebackground="White")
-btn.place(relx=.5, rely=.5, anchor="c")
 
-btn1 = Button(window, text="Stop!", font=("Elephant", 20), background="#66CDAA", command=stop, activebackground="White")
-btn2 = Button(window, text="Reset?", font=("Elephant", 20), background="#66CDAA", command=reset, activebackground="White")
+btn = Button(window, text="Start!",  command=start, **btn_style)
+btn.place(relx=.5, rely=.7, anchor="c")
 
-btn3 = Button(window, text="+", font=("Elephant", 15), background="#66CDAA", command=plush, activebackground="White")
-btn4 = Button(window, text="-", font=("Elephant", 15), background="#66CDAA", command=minush, activebackground="White")
-btn5 = Button(window, text="+", font=("Elephant", 15), background="#66CDAA", command=plusm, activebackground="White")
-btn6 = Button(window, text="-", font=("Elephant", 15), background="#66CDAA", command=minusm, activebackground="White")
-btn7 = Button(window, text="Start!", font=("Elephant", 15), background="#66CDAA", command=starttm, activebackground="White")
-btn8 = Button(window, text="Stop!", font=("Elephant", 15), background="#66CDAA", command=stoptm, activebackground="White")
-btn9 = Button(window, text="Reset!", font=("Elephant", 15), background="#66CDAA", command=resettm, activebackground="White")
+btn1 = Button(window, text="Stop!", command=stop, **btn_style)
+btn2 = Button(window, text="Reset?", command=reset, **btn_style)
+
+btn3 = Button(window, text="+", command=plush, **btn_style)
+btn4 = Button(window, text="-", command=minush, **btn_style)
+btn5 = Button(window, text="+", command=plusm, **btn_style)
+btn6 = Button(window, text="-", command=minusm, **btn_style)
+btn7 = Button(window, text="Start!", command=starttm, **btn_style)
+btn8 = Button(window, text="Stop!", command=stoptm, **btn_style)
+btn9 = Button(window, text="Reset!", command=resettm, **btn_style)
 menu = Menu(window)
 new_item = Menu(menu)
-new_item.add_command(label="Таймер", command=timer)
+new_item.add_command(label="Таймер", command=Timer)
 new_item.add_command(label="Секундомер", command=Sec)
 menu.add_cascade(label="Сменить режим", menu=new_item)
 window.config(menu=menu)
