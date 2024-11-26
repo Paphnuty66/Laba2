@@ -3,9 +3,11 @@ from datetime import datetime
 from tkinter.messagebox import showinfo
 temp = 0
 after_id = " "
-hours=0
-minut=0
+hours = 0
+minut = 0
 current_mode = "sec"
+
+
 def tick():
     global temp, after_id
     after_id = window.after(1000, tick)
@@ -13,17 +15,20 @@ def tick():
     lbl1.configure(text=str(f_temp))
     temp += 1
 
+
 def start():
     lbl.config(text="Время пошло")
     btn.place_forget()
     btn1.place(relx=.5, rely=.7, anchor="c")
     tick()
 
+
 def stop():
     lbl.config(text="Хотите сбросить Секундомер?")
     btn1.place_forget()
     btn2.place(relx=.5, rely=.7, anchor="c")
     window.after_cancel(after_id)
+
 
 def reset():
     lbl.config(text="Для начала нажми на кнопку Start")
@@ -32,6 +37,7 @@ def reset():
     btn2.place_forget()
     btn.place(relx=.5, rely=.7, anchor="c")
     lbl1.config(text="00:00")
+
 
 def starttm():
     global after_id, hours, minut
@@ -69,11 +75,13 @@ def starttm():
     lbl.config(text="Чтобы остановить нажмите Stop")
     btn8.place(relx=.5, rely=.8, anchor="c")
 
+
 def stoptm():
     lbl.config(text="Хотите сбросить таймер?")
     btn8.place_forget()
     btn9.place(relx=.5, rely=.8, anchor="c")
     window.after_cancel(after_id)
+
 
 def resettm():
     lbl.config(text="Для начала нажми на кнопку Start")
@@ -82,6 +90,7 @@ def resettm():
     minut = 0
     btn9.place_forget()
     timer()
+
 
 def timer():
     title_label.config(text="Таймер")
@@ -96,9 +105,10 @@ def timer():
     btn6.place(relx=.7, rely=.6, anchor="c")
     btn7.place(relx=.5, rely=.8, anchor="c")
 
+
 def plush():
     global hours, minut
-    if hours<59:
+    if hours < 59:
         hours += 1
     else:
         showinfo("Предупреждение!", "Мой таймер не рассчитан на такие цифры!")
@@ -115,6 +125,7 @@ def plush():
     else:
         h1 = str(hours) + ":" + str(minut)
         lbl1.config(text=h1)
+
 
 def minush():
     global hours, minut
@@ -133,14 +144,13 @@ def minush():
             h1 = str(hours) + ":" + str(minut)
             lbl1.config(text=h1)
 
+
 def plusm():
     global hours, minut
-    if minut<59:
+    if minut < 59:
         minut += 1
     else:
         showinfo("Предупреждение!", "Мой таймер не рассчитан на такие цифры!")
-
-
     if hours < 10 and minut < 10:
         h1 = "0" + str(hours)+":0"+str(minut)
         lbl1.config(text=h1)
@@ -153,6 +163,7 @@ def plusm():
     else:
         h1 = str(hours) + ":" + str(minut)
         lbl1.config(text=h1)
+
 
 def minusm():
     global hours, minut
@@ -171,11 +182,12 @@ def minusm():
             h1 = str(hours) + ":" + str(minut)
             lbl1.config(text=h1)
 
-def Sec():
+
+def sec():
     title_label.config(text="Секундомер")
     global current_mode, hours, minut
-    hours=0
-    minut=0
+    hours = 0
+    minut = 0
     if current_mode != "sec":
         current_mode = "sec"
         btn3.place_forget()
@@ -188,6 +200,7 @@ def Sec():
         lbl.config(text="Для начала нажми на кнопку Start")
         lbl1.config(text="00:00")
         btn.place(relx=.5, rely=.8, anchor="c")
+
 
 def Timer():
     title_label.config(text="Таймер")
@@ -205,7 +218,6 @@ def Timer():
         btn5.place(relx=.6, rely=.6, anchor="c")
         btn6.place(relx=.7, rely=.6, anchor="c")
         btn7.place(relx=.5, rely=.8, anchor="c")
-
 
 
 window = Tk()
@@ -240,7 +252,7 @@ btn9 = Button(window, text="Reset!", command=resettm, **btn_style)
 menu = Menu(window)
 new_item = Menu(menu)
 new_item.add_command(label="Таймер", command=Timer)
-new_item.add_command(label="Секундомер", command=Sec)
+new_item.add_command(label="Секундомер", command=sec)
 menu.add_cascade(label="Сменить режим", menu=new_item)
 window.config(menu=menu)
 window.mainloop()
