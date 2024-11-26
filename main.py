@@ -170,7 +170,9 @@ def minusm():
             lbl1.config(text=h1)
 
 def Sec():
-    global current_mode
+    global current_mode, hours, minut
+    hours=0
+    minut=0
     if current_mode != "sec":
         current_mode = "sec"
         btn3.place_forget()
@@ -185,7 +187,9 @@ def Sec():
         btn.place(relx=.5, rely=.5, anchor="c")
 
 def Timer():
-    global current_mode
+
+    global current_mode, temp
+    temp = 0
     if current_mode != "timer":
         current_mode = "timer"
         btn.place_forget()
@@ -202,7 +206,7 @@ def Timer():
 
 
 window = Tk()
-window['bg'] = '#8B7355'
+window['bg'] = '#F0FFFF'
 window.title("Секундомер")
 window.geometry("400x400")
 showinfo(title="Белов Павел ИДБ-23-14", message="Вариант 13 Программа <<Таймер-секундомер>>")
@@ -210,19 +214,19 @@ lbl = Label(window, text="Для начала нажми на кнопку Start
 lbl.pack()
 lbl1 = Label(window, text="00:00", font=("Elephant", 40))
 lbl1.pack()
-btn = Button(window, text="Start!", font=("Elephant", 20), background="#DC143C", command=start, activebackground="White")
+btn = Button(window, text="Start!", font=("Elephant", 20), background="#66CDAA", command=start, activebackground="White")
 btn.place(relx=.5, rely=.5, anchor="c")
 
-btn1 = Button(window, text="Stop!", font=("Elephant", 20), background="#DC143C", command=stop, activebackground="White")
-btn2 = Button(window, text="Reset?", font=("Elephant", 20), background="#DC143C", command=reset, activebackground="White")
+btn1 = Button(window, text="Stop!", font=("Elephant", 20), background="#66CDAA", command=stop, activebackground="White")
+btn2 = Button(window, text="Reset?", font=("Elephant", 20), background="#66CDAA", command=reset, activebackground="White")
 
-btn3 = Button(window, text="+", font=("Elephant", 15), background="#DC143C", command=plush, activebackground="White")
-btn4 = Button(window, text="-", font=("Elephant", 15), background="#DC143C", command=minush, activebackground="White")
-btn5 = Button(window, text="+", font=("Elephant", 15), background="#DC143C", command=plusm, activebackground="White")
-btn6 = Button(window, text="-", font=("Elephant", 15), background="#DC143C", command=minusm, activebackground="White")
-btn7 = Button(window, text="Start!", font=("Elephant", 15), background="#DC143C", command=starttm, activebackground="White")
-btn8 = Button(window, text="Stop!", font=("Elephant", 15), background="#DC143C", command=stoptm, activebackground="White")
-btn9 = Button(window, text="Reset!", font=("Elephant", 15), background="#DC143C", command=resettm, activebackground="White")
+btn3 = Button(window, text="+", font=("Elephant", 15), background="#66CDAA", command=plush, activebackground="White")
+btn4 = Button(window, text="-", font=("Elephant", 15), background="#66CDAA", command=minush, activebackground="White")
+btn5 = Button(window, text="+", font=("Elephant", 15), background="#66CDAA", command=plusm, activebackground="White")
+btn6 = Button(window, text="-", font=("Elephant", 15), background="#66CDAA", command=minusm, activebackground="White")
+btn7 = Button(window, text="Start!", font=("Elephant", 15), background="#66CDAA", command=starttm, activebackground="White")
+btn8 = Button(window, text="Stop!", font=("Elephant", 15), background="#66CDAA", command=stoptm, activebackground="White")
+btn9 = Button(window, text="Reset!", font=("Elephant", 15), background="#66CDAA", command=resettm, activebackground="White")
 menu = Menu(window)
 new_item = Menu(menu)
 new_item.add_command(label="Таймер", command=timer)
