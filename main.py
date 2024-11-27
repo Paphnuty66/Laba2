@@ -40,7 +40,7 @@ def reset():
 
 
 def starttm():
-    global after_id, hours, minut
+    global after_id, hours, minut, current_mode
     lbl.config(text="Время пошло!")
     btn3.place_forget()
     btn4.place_forget()
@@ -190,6 +190,7 @@ def sec():
     minut = 0
     if current_mode != "sec":
         current_mode = "sec"
+        window.after_cancel(after_id)  # Останавливаем текущую задачу
         btn3.place_forget()
         btn4.place_forget()
         btn5.place_forget()
@@ -208,6 +209,7 @@ def Timer():
     temp = 0
     if current_mode != "timer":
         current_mode = "timer"
+        window.after_cancel(after_id)  # Останавливаем текущую задачу
         btn.place_forget()
         btn1.place_forget()
         btn2.place_forget()
